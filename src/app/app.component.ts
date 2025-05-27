@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { PlaceCardComponent } from "../app/place-card/place-card.component";
+import { PlacesListComponent } from './places-list/places-list.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, PlaceCardComponent],
+  imports: [RouterOutlet, PlacesListComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'angular-template-project';
-  numbers = Array.from({length: 5}, (_, i) => i + 1);
+
 }
