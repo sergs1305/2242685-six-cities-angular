@@ -1,4 +1,4 @@
-import { Component, Input, SimpleChanges } from '@angular/core';
+import { Component, Input, SimpleChanges, OnChanges } from '@angular/core';
 import { PlaceCardComponent } from '../place-card/place-card.component';
 
 @Component({
@@ -7,7 +7,7 @@ import { PlaceCardComponent } from '../place-card/place-card.component';
   templateUrl: './places-list.component.html',
   styleUrl: './places-list.component.css'
 })
-export class PlacesListComponent {
+export class PlacesListComponent implements OnChanges {
   @Input() placesCount = 5;
   numbers: number[] = [];
 
