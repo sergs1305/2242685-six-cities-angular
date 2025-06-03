@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 // import { RouterOutlet } from '@angular/router';
-import { PlacesListComponent } from './places-list/places-list.component';
+import { MainComponent } from "./main/main.component";
 
 @Component({
   selector: 'app-root',
-  imports: [PlacesListComponent], // RouterOutlet
+  imports: [MainComponent], // RouterOutlet
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

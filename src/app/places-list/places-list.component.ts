@@ -7,6 +7,7 @@ import { PlaceCardComponent } from '../place-card/place-card.component';
   templateUrl: './places-list.component.html',
   styleUrl: './places-list.component.css'
 })
+
 export class PlacesListComponent implements OnChanges {
   @Input() placesCount = 5;
   numbers: number[] = [];

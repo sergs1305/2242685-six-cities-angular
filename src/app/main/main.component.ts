@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { PlaceCardComponent } from "../place-card/place-card.component";
+import { PlacesListComponent } from "../places-list/places-list.component";
 
 @Component({
   selector: 'app-main',
-  imports: [PlaceCardComponent],
+  imports: [PlacesListComponent],
   templateUrl: './main.component.html',
   styleUrl: './main.component.css'
 })

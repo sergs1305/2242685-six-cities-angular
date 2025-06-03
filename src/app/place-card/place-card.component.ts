@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   templateUrl: './place-card.component.html',
   styleUrl: './place-card.component.css'
 })
+
 export class PlaceCardComponent {
 
 }
