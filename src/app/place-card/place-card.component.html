@@ -1,4 +1,4 @@
-<article class="cities__card place-card">
+<article class="cities__card place-card" (mouseover)="onMouseOver()" (focus)="onFocus()">
   @if(offer.isPremium) {
     <div class="place-card__mark">
       <span>Premium</span>
@@ -12,7 +12,7 @@
   <div class="place-card__info">
     <div class="place-card__price-wrapper">
       <div class="place-card__price">
-        <b class="place-card__price-value">{{ offer.price | currency:'EUR':true:'1.0-0' }}</b>
+        <b class="place-card__price-value">{{ offer.price | currency:'EUR':'symbol':'1.0-0' }}</b>
         <span class="place-card__price-text">&#47;&nbsp;night</span>
       </div>
       <button class="place-card__bookmark-button button" type="button">

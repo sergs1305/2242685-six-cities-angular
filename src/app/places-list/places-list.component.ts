@@ -10,14 +10,12 @@ import { Offers } from '../types/types';
   styleUrl: './places-list.component.css'
 })
 
-export class PlacesListComponent { //implements OnChanges {
-  @Input() displayedOffers: Offers = [];
-  // @Input() placesCount = 5;
-  // numbers: number[] = [];
+export class PlacesListComponent {
+  activeCardOfferId = 0;
 
-  // ngOnChanges(changes: SimpleChanges): void {
-  //   if (changes['placesCount']) {
-  //     this.numbers = Array.from({ length: this.placesCount }, (_, i) => i + 1);
-  //   }
-  // }
+  @Input() displayedOffers: Offers = [];
+
+  setActiveCardOfferId(newActiveCardOfferId: number) {
+    this.activeCardOfferId = newActiveCardOfferId;
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CurrencyPipe, TitleCasePipe } from '@angular/common';
 import { Offer } from '../types/types';
 
@@ -10,32 +10,41 @@ import { Offer } from '../types/types';
 })
 
 export class PlaceCardComponent {
+  onFocus() {
+    throw new Error('Method not implemented.');
+  }
+  onMouseOver() {
+    this.offerId.emit(this.offer.id);
+  }
+
+  @Output() offerId = new EventEmitter();
+
   @Input()
-    offer: Offer = {
-      id: '',
-      title: '',
-      type: '',
-      price: 0,
-      previewImage: '',
-      city: {
-        name: '',
-        location: {
-          latitude: 0,
-          longitude: 0,
-          zoom: 0
-        }
-      },
+  offer: Offer = {
+    id: '',
+    title: '',
+    type: '',
+    price: 0,
+    previewImage: '',
+    city: {
+      name: '',
       location: {
         latitude: 0,
         longitude: 0,
         zoom: 0
-      },
-      isFavorite: false,
-      isPremium: false,
-      rating: 0
-    };
+      }
+    },
+    location: {
+      latitude: 0,
+      longitude: 0,
+      zoom: 0
+    },
+    isFavorite: false,
+    isPremium: false,
+    rating: 0
+  };
 
-    getRatingWidth(): number {
+  getRatingWidth(): number {
     return Math.round(this.offer.rating) * 20;
   }
 }
