@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class AuthService {
-  isAuth = false;
+  isAuth = true; // заменить на false
 
   isAuthenticated() {
     return this.isAuth;

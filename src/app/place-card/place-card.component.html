@@ -15,7 +15,7 @@
         <b class="place-card__price-value">{{ offer.price | currency:'EUR':'symbol':'1.0-0' }}</b>
         <span class="place-card__price-text">&#47;&nbsp;night</span>
       </div>
-      <button class="place-card__bookmark-button button" type="button">
+      <button class="place-card__bookmark-button {{ offer.isFavorite ? 'place-card__bookmark-button--active' : '' }} button" type="button">
         <svg class="place-card__bookmark-icon" width="18" height="19">
           <use xlink:href="#icon-bookmark"></use>
         </svg>
@@ -24,7 +24,7 @@
     </div>
     <div class="place-card__rating rating">
       <div class="place-card__stars rating__stars">
-        <span [style.width.%]="getRatingWidth()"></span>
+        <span [style.width.%]="offer.rating | ratingWidth"></span>
         <span class="visually-hidden">Rating</span>
       </div>
     </div>

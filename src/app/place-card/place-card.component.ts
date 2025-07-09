@@ -1,16 +1,17 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CurrencyPipe, TitleCasePipe } from '@angular/common';
 import { Offer } from '../types/types';
+import { RatingWidthPipe } from "../pipes/rating-width.pipe";
 
 @Component({
   selector: 'app-place-card',
-  imports: [CurrencyPipe, TitleCasePipe],
+  imports: [CurrencyPipe, TitleCasePipe, RatingWidthPipe],
   templateUrl: './place-card.component.html',
   styleUrl: './place-card.component.css'
 })
 
 export class PlaceCardComponent {
-  onFocus() {
+  onFocus() { // нужен???
     throw new Error('Method not implemented.');
   }
   onMouseOver() {
@@ -19,8 +20,7 @@ export class PlaceCardComponent {
 
   @Output() offerId = new EventEmitter();
 
-  @Input()
-  offer: Offer = {
+  @Input() offer: Offer = {
     id: '',
     title: '',
     type: '',
@@ -44,7 +44,4 @@ export class PlaceCardComponent {
     rating: 0
   };
 
-  getRatingWidth(): number {
-    return Math.round(this.offer.rating) * 20;
-  }
 }
