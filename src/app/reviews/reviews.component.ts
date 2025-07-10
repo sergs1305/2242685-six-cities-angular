@@ -11,10 +11,9 @@ import { DatePipe } from '@angular/common';
   styleUrl: './reviews.component.css'
 })
 export class ReviewsComponent implements OnInit {
-  state!: {
-    rating: number,
-    comment: string,
-  };
+
+  rating = 0;
+  comment = '';
 
   offerReviews: Reviews = [];
 
@@ -56,7 +55,15 @@ export class ReviewsComponent implements OnInit {
   updateRating(event: Event) {
     const target = event.target as HTMLInputElement | null;
     if (target && target.value) {
-      this.state.rating = Number(target.value);
+      this.rating = Number(target.value);
     }
   }
+
+  updateComment(event: Event) {
+    const target = event.target as HTMLTextAreaElement | null;
+    if (target && target.value) {
+      this.comment = target.value;
+    }
+  }
+
 }
