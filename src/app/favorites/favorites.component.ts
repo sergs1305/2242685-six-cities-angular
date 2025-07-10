@@ -3,7 +3,6 @@ import { offers } from '../../mocks/offers';
 import { Offers } from '../types/types';
 import { CurrencyPipe } from '@angular/common';
 import { RatingWidthPipe } from "../pipes/rating-width.pipe";
-// import { RatingWidthPipe } from '../pipes/rating-width.pipe';
 
 @Component({
   selector: 'app-favorites',

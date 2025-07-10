@@ -2,10 +2,11 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CurrencyPipe, TitleCasePipe } from '@angular/common';
 import { Offer } from '../types/types';
 import { RatingWidthPipe } from "../pipes/rating-width.pipe";
+import { RouterModule  } from '@angular/router';
 
 @Component({
   selector: 'app-place-card',
-  imports: [CurrencyPipe, TitleCasePipe, RatingWidthPipe],
+  imports: [CurrencyPipe, TitleCasePipe, RatingWidthPipe, RouterModule],
   templateUrl: './place-card.component.html',
   styleUrl: './place-card.component.css'
 })
