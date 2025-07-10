@@ -11,7 +11,7 @@ import { DatePipe } from '@angular/common';
   styleUrl: './reviews.component.css'
 })
 export class ReviewsComponent implements OnInit {
-
+  // свойства состояния
   rating = 0;
   comment = '';
 
