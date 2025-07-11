@@ -46,11 +46,11 @@ export interface User {
   name: string;
   avatarUrl: string;
   isPro: boolean;
-  email: string;
-  token: string;
+  email?: string;
+  token?: string;
 }
 
-export interface Comment {
+export interface Review {
   id: string;
   date: string;
   user: User;
@@ -58,7 +58,7 @@ export interface Comment {
   rating: number;
 }
 
-export type Comments = Comment[];
+export type Reviews = Review[];
 
 export interface Point {
   id: string;
@@ -76,9 +76,15 @@ export type CommentsToDisplay = CommentWithId[];
 export interface CommentToPost {
   comment: string;
   rating: number;
-  }
+}
 
 export interface AppData {
-    offers: Offers;
-    isOffersDataLoading: boolean;
-  }
+  offers: Offers;
+  isOffersDataLoading: boolean;
+}
+
+export interface Rating {
+  value: number;
+  stars: string;
+  title: string;
+}

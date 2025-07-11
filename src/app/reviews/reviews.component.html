@@ -1,0 +1,53 @@
+<section class="offer__reviews reviews">
+  <h2 class="reviews__title">Reviews &middot; <span class="reviews__amount">{{ offerReviews.length }}</span></h2>
+  <ul class="reviews__list">
+    @for (review of offerReviews; track $index) {
+      <li class="reviews__item">
+        <div class="reviews__user user">
+          <div class="reviews__avatar-wrapper user__avatar-wrapper">
+            <img class="reviews__avatar user__avatar" [src]="review.user.avatarUrl" width="54" height="54"
+              alt="Reviews avatar">
+          </div>
+          <span class="reviews__user-name">
+            {{review.user.name}}
+          </span>
+        </div>
+        <div class="reviews__info">
+          <div class="reviews__rating rating">
+            <div class="reviews__stars rating__stars">
+              <span [style.width.%]="review.rating | ratingWidth"></span>
+              <span class="visually-hidden">Rating</span>
+            </div>
+          </div>
+          <p class="reviews__text">
+            {{review.comment}}
+          </p>
+          <time class="reviews__time" attr.datetime="{{ review.date | date: 'yyyy-MM-dd'}}">{{ review.date | date:'MMMM yyyy' }}</time>
+        </div>
+      </li>
+    }
+  </ul>
+  <form class="reviews__form form" action="#" method="post">
+    <label class="reviews__label form__label" for="review">Your review</label>
+    <div class="reviews__rating-form form__rating">
+      @for (rating of RATINGS; track $index) {
+        <input class="form__rating-input visually-hidden" name="rating" [value]="rating.value" [id]="rating.stars"
+          type="radio" (change)="updateRating($event)">
+        <label [for]="rating.stars" class="reviews__rating-label form__rating-label" [title]="rating.title">
+          <svg class="form__star-image" width="37" height="33">
+            <use xlink:href="#icon-star"></use>
+          </svg>
+        </label>
+      }
+    </div>
+    <textarea class="reviews__textarea form__textarea" id="review" name="review"
+      placeholder="Tell how was your stay, what you like and what can be improved" (input)="updateComment($event)"></textarea>
+    <div class="reviews__button-wrapper">
+      <p class="reviews__help">
+        To submit review please make sure to set <span class="reviews__star">rating</span> and describe your
+        stay with at least <b class="reviews__text-amount">50 characters</b>.
+      </p>
+      <button class="reviews__submit form__submit button" type="submit" disabled="">Submit</button>
+    </div>
+  </form>
+</section>

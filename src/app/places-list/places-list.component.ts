@@ -1,5 +1,6 @@
-import { Component, Input, SimpleChanges, OnChanges } from '@angular/core';
+import { Component, Input } from '@angular/core'; //, SimpleChanges, OnChanges
 import { PlaceCardComponent } from '../place-card/place-card.component';
+import { Offers } from '../types/types';
 
 @Component({
   selector: 'app-places-list',
@@ -8,13 +9,12 @@ import { PlaceCardComponent } from '../place-card/place-card.component';
   styleUrl: './places-list.component.css'
 })
 
-export class PlacesListComponent implements OnChanges {
-  @Input() placesCount = 5;
-  numbers: number[] = [];
+export class PlacesListComponent {
+  activeCardOfferId = 0;
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['placesCount']) {
-      this.numbers = Array.from({ length: this.placesCount }, (_, i) => i + 1);
-    }
+  @Input() displayedOffers: Offers = [];
+
+  setActiveCardOfferId(newActiveCardOfferId: number) {
+    this.activeCardOfferId = newActiveCardOfferId;
   }
 }

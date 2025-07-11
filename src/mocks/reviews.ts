@@ -1,6 +1,6 @@
-import { Comments } from '../app/types/types';
+import { Reviews } from '../app/types/types';
 
-export const comments: Comments =
+export const reviews: Reviews =
 [
   {
     'id': '2955158f-b7db-4471-b680-716c0d87d13d',

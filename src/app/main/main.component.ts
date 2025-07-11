@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { PlacesListComponent } from "../places-list/places-list.component";
+import { offers } from '../../mocks/offers';
+import { Offers } from '../types/types';
 
 @Component({
   selector: 'app-main',
@@ -8,5 +10,6 @@ import { PlacesListComponent } from "../places-list/places-list.component";
   styleUrl: './main.component.css'
 })
 export class MainComponent {
-  numbers = Array.from({length: 5}, (_, i) => i + 1);
+  offers: Offers = offers;
+  // numbers = Array.from({length: 5}, (_, i) => i + 1);
 }
