@@ -1,5 +1,4 @@
 <div class="cities__places-list places__list tabs__content">
-  <p>{{ activeCardOfferId }}</p> <!-- удалить!!! -->
 
   @for (offer of displayedOffers; track $index) {
     <app-place-card [offer]="offer" (offerId)="setActiveCardOfferId($event)"></app-place-card>

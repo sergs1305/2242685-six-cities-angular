@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CurrencyPipe, TitleCasePipe } from '@angular/common';
-import { Offer } from '../types/types';
-import { RatingWidthPipe } from "../pipes/rating-width.pipe";
+import { Offer } from '../../types/types';
+import { RatingWidthPipe } from '../../pipes/rating-width.pipe';
 import { RouterModule  } from '@angular/router';
 
 @Component({
