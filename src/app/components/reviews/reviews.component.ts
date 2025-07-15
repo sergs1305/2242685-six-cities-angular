@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { reviews } from '../../mocks/reviews';
-import { Reviews } from '../types/types';
-import { RatingWidthPipe } from "../pipes/rating-width.pipe";
+import { reviews } from '../../../mocks/reviews';
+import { Reviews } from '../../types/types';
+import { RatingWidthPipe } from "../../pipes/rating-width.pipe";
 import { DatePipe } from '@angular/common';
 import { RATINGS } from './const';
 

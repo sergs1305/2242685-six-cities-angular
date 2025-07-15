@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core'; //, SimpleChanges, OnChanges
 import { PlaceCardComponent } from '../place-card/place-card.component';
-import { Offers } from '../types/types';
+import { Offers } from '../../types/types';
 
 @Component({
   selector: 'app-places-list',

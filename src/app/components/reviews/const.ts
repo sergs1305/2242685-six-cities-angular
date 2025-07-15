@@ -1,4 +1,4 @@
-import { Rating } from "../types/types";
+import { Rating } from "../../types/types";
 
 export const RATINGS: Rating[] = [
     {

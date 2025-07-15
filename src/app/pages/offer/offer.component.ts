@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Offer } from '../types/types'; // FullOffer
+import { Offer } from '../../types/types'; // FullOffer
 import { ActivatedRoute } from '@angular/router';
-import { offers } from '../../mocks/offers';
-import { RatingWidthPipe } from "../pipes/rating-width.pipe";
+import { offers } from '../../../mocks/offers';
+import { RatingWidthPipe } from "../../pipes/rating-width.pipe";
 import { CurrencyPipe, TitleCasePipe } from '@angular/common';
-import { ReviewsComponent } from "../reviews/reviews.component";
+import { ReviewsComponent } from "../../components/reviews/reviews.component";
 
 @Component({
   selector: 'app-offer',

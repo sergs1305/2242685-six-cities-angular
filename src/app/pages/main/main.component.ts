@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { PlacesListComponent } from "../places-list/places-list.component";
-import { offers } from '../../mocks/offers';
-import { Offers } from '../types/types';
+import { PlacesListComponent } from "../../components/places-list/places-list.component";
+import { offers } from '../../../mocks/offers';
+import { Offers } from '../../types/types';
 
 @Component({
   selector: 'app-main',
