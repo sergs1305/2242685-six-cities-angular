@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { reviews } from '../../mocks/reviews';
-import { Rating, Reviews } from '../types/types';
+import { Reviews } from '../types/types';
 import { RatingWidthPipe } from "../pipes/rating-width.pipe";
 import { DatePipe } from '@angular/common';
+import { RATINGS } from './const';
 
 @Component({
   selector: 'app-reviews',
@@ -17,33 +18,7 @@ export class ReviewsComponent implements OnInit {
 
   offerReviews: Reviews = [];
 
-  RATINGS: Rating[] = [
-    {
-      value: 5,
-      stars: '5-stars',
-      title: 'perfect'
-    },
-    {
-      value: 4,
-      stars: '4-stars',
-      title: 'good'
-    },
-    {
-      value: 3,
-      stars: '3-stars',
-      title: 'not bad'
-    },
-    {
-      value: 2,
-      stars: '2-stars',
-      title: 'badly'
-    },
-    {
-      value: 1,
-      stars: '1-star',
-      title: 'terribly'
-    },
-  ];
+  ratings = RATINGS;
 
   @Input()
   offerId!: string;
