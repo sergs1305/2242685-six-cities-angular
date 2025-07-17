@@ -58,11 +58,11 @@
         </form>
 
         <!-- places-list component -->
-        <app-places-list [displayedOffers]=offers></app-places-list>
+        <app-places-list [displayedOffers]="cityOffers" [placesListPageName]="placesListPage.Main"></app-places-list>
 
       </section>
       <div class="cities__right-section">
-          <app-map [city]="currentCity" [offers]="offers"></app-map>
+          <app-map [city]="currentCity" [offers]="cityOffers"></app-map>
       </div>
     </div>
   </div>

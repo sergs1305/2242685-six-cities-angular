@@ -3,7 +3,7 @@ import { PlacesListComponent } from "../../components/places-list/places-list.co
 import { offers } from '../../../mocks/offers';
 import { City, Offers } from '../../types/types';
 import { MapComponent } from "../../components/map/map.component";
-import { CITIES, DEFAULT_CITY_INDEX } from '../../const';
+import { CITIES, DEFAULT_CITY_INDEX, PlacesListPage } from '../../const';
 
 @Component({
   selector: 'app-main',
@@ -12,7 +12,7 @@ import { CITIES, DEFAULT_CITY_INDEX } from '../../const';
   styleUrl: './main.component.css'
 })
 export class MainComponent implements OnInit {
-  offers: Offers = [];
+  cityOffers: Offers = [];
   currentCity: City = {
     name: CITIES[DEFAULT_CITY_INDEX],
     location: {
@@ -21,14 +21,15 @@ export class MainComponent implements OnInit {
       zoom: 0
     }
   };
+  placesListPage = PlacesListPage;
 
   ngOnInit(): void {
-    const foundOffer = offers.find(offer => offer.city.name === this.currentCity.name)?.location;
+    const foundOffer = offers.find(offer => offer.city.name === this.currentCity.name);
     if (foundOffer) {
-      this.currentCity.location = foundOffer;
+      this.currentCity.location = foundOffer.location;
     }
 
-    this.offers = offers.filter(offer => offer.city.name === this.currentCity.name);
+    this.cityOffers = offers.filter(offer => offer.city.name === this.currentCity.name);
   }
 
 }

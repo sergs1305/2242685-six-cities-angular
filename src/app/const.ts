@@ -9,5 +9,10 @@ export const CITIES = [
   'Hamburg',
   'Dusseldorf'
 ];
-
 export const DEFAULT_CITY_INDEX = 3; // Amsterdam
+
+export enum PlacesListPage {
+  Main = 'MAIN',
+  Favorites = 'FAVORITES',
+  Offer = 'OFFER'
+}
