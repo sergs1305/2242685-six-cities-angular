@@ -1,10 +1,15 @@
-<article class="cities__card place-card" (mouseover)="onMouseOver()" (focus)="onFocus()">
+<article
+  [class]="placeCardClass"
+  (mouseover)="placesListPageName === placesListPage.Main ? onMouseOver() : null"
+  (focus)="placesListPageName === placesListPage.Main ? onFocus() : null"
+>
+
   @if(offer.isPremium) {
     <div class="place-card__mark">
       <span>Premium</span>
     </div>
   }
-  <div class="cities__image-wrapper place-card__image-wrapper">
+  <div [class]="placeCardImageWrapperClass">
     <a [routerLink]="['/offer', offer.id]">
       <img class="place-card__image" [src]="offer.previewImage" width="260" height="200" alt="Place image">
     </a>

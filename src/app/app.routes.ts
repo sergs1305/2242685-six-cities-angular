@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { AuthGuard } from './auth/guard.service';
-import { MainComponent } from './main/main.component';
+import { MainComponent } from './pages/main/main.component';
 
 export const routes: Routes = [
   {
@@ -10,23 +10,23 @@ export const routes: Routes = [
   },
   {
     path: 'offer/:offerId',
-    loadComponent: () => import('./offer/offer.component').then(c => c.OfferComponent),
+    loadComponent: () => import('./pages/offer/offer.component').then(c => c.OfferComponent),
     title: 'Offer (place) page',
   },
   {
     path: 'favorites',
-    loadComponent: () => import('./favorites/favorites.component').then(c => c.FavoritesComponent),
+    loadComponent: () => import('./pages/favorites/favorites.component').then(c => c.FavoritesComponent),
     title: 'Favorites page',
     canActivate: [AuthGuard],
   },
   {
     path: 'login',
-    loadComponent: () => import('./login/login.component').then(c => c.LoginComponent),
+    loadComponent: () => import('./pages/login/login.component').then(c => c.LoginComponent),
     title: 'Login page',
   },
   {
     path: '**',
-    loadComponent: () => import('./page-404/page-404.component').then(c => c.Page404Component),
+    loadComponent: () => import('./pages/page-404/page-404.component').then(c => c.Page404Component),
     title: 'Not found (404) page',
   },
 ];

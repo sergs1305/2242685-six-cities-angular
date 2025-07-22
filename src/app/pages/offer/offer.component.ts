@@ -1,21 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { Offer } from '../types/types'; // FullOffer
+import { Offer } from '../../types/types'; // FullOffer
 import { ActivatedRoute } from '@angular/router';
-import { offers } from '../../mocks/offers';
-import { RatingWidthPipe } from "../pipes/rating-width.pipe";
+import { offers } from '../../../mocks/offers';
+import { RatingWidthPipe } from "../../pipes/rating-width.pipe";
 import { CurrencyPipe, TitleCasePipe } from '@angular/common';
-import { ReviewsComponent } from "../reviews/reviews.component";
+import { ReviewsComponent } from "../../components/reviews/reviews.component";
+import { MapComponent } from "../../components/map/map.component";
+import { PlacesListComponent } from "../../components/places-list/places-list.component";
+import { PlacesListPage } from '../../const';
 
 @Component({
   selector: 'app-offer',
-  imports: [RatingWidthPipe, CurrencyPipe, TitleCasePipe, ReviewsComponent],
+  imports: [RatingWidthPipe, CurrencyPipe, TitleCasePipe, ReviewsComponent, MapComponent, PlacesListComponent],
   templateUrl: './offer.component.html',
   styleUrl: './offer.component.css'
 })
 
 export class OfferComponent implements OnInit {
   offerId = '';
-
+  nearbyOffers = offers.slice(0, 3);
   offer: Offer = {
     id: '',
     title: '',
@@ -39,6 +42,7 @@ export class OfferComponent implements OnInit {
     isPremium: false,
     rating: 0
   };
+  placesListPage = PlacesListPage;
 
   constructor(private route: ActivatedRoute) { }
 

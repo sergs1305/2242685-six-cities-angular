@@ -22,26 +22,6 @@ export interface Offer {
   rating: number;
 }
 
-export interface FullOffer {
-  id: string;
-  title: string;
-  type: string;
-  price: number;
-  city: City;
-  location: Location;
-  isFavorite: boolean;
-  isPremium: boolean;
-  rating: number;
-  description: string;
-  bedrooms: number;
-  goods: [string];
-  host: User;
-  images: [string];
-  maxAdults: number;
-}
-
-export type Offers = Offer[];
-
 export interface User {
   name: string;
   avatarUrl: string;
@@ -49,6 +29,17 @@ export interface User {
   email?: string;
   token?: string;
 }
+
+export interface FullOffer extends Offer {
+  description: string;
+  bedrooms: number;
+  goods: string[];
+  host: User;
+  images: string[];
+  maxAdults: number;
+}
+
+export type Offers = Offer[];
 
 export interface Review {
   id: string;

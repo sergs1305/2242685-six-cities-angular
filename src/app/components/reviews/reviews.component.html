@@ -30,7 +30,7 @@
   <form class="reviews__form form" action="#" method="post">
     <label class="reviews__label form__label" for="review">Your review</label>
     <div class="reviews__rating-form form__rating">
-      @for (rating of RATINGS; track $index) {
+      @for (rating of ratings; track $index) {
         <input class="form__rating-input visually-hidden" name="rating" [value]="rating.value" [id]="rating.stars"
           type="radio" (change)="updateRating($event)">
         <label [for]="rating.stars" class="reviews__rating-label form__rating-label" [title]="rating.title">
