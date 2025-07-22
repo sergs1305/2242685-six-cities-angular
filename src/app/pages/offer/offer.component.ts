@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Offer } from '../../types/types'; // FullOffer
 import { ActivatedRoute } from '@angular/router';
 import { offers } from '../../../mocks/offers';
@@ -8,6 +8,7 @@ import { ReviewsComponent } from "../../components/reviews/reviews.component";
 import { MapComponent } from "../../components/map/map.component";
 import { PlacesListComponent } from "../../components/places-list/places-list.component";
 import { PlacesListPage } from '../../const';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-offer',
@@ -16,7 +17,7 @@ import { PlacesListPage } from '../../const';
   styleUrl: './offer.component.css'
 })
 
-export class OfferComponent implements OnInit {
+export class OfferComponent implements OnInit, OnDestroy {
   offerId = '';
   nearbyOffers = offers.slice(0, 3);
   offer: Offer = {
@@ -43,11 +44,12 @@ export class OfferComponent implements OnInit {
     rating: 0
   };
   placesListPage = PlacesListPage;
+  subscription = new Subscription();
 
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
+    this.subscription = this.route.paramMap.subscribe(params => {
       const id = params.get('offerId');
       if (id) {
         this.offerId = id;
@@ -58,4 +60,8 @@ export class OfferComponent implements OnInit {
     });
     this.offer = offers.find(offer => offer.id === this.offerId) || this.offer;
   }
+
+  ngOnDestroy() {
+        this.subscription.unsubscribe();
+    }
 }

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -7,10 +8,11 @@ import { ReactiveFormsModule, FormBuilder, Validators, FormGroup } from '@angula
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   loginSection!: FormGroup;
   userEmail = '';
   userPassword = '';
+  subscription = new Subscription();
 
   constructor(private fb: FormBuilder) { };
 
@@ -20,10 +22,13 @@ export class LoginComponent implements OnInit {
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
 
-    this.loginSection.valueChanges.subscribe(values => {
+    this.subscription = this.loginSection.valueChanges.subscribe(values => {
       this.userEmail = values.email;
       this.userPassword = values.password;
     });
   }
 
+  ngOnDestroy() {
+        this.subscription.unsubscribe();
+    }
 }
