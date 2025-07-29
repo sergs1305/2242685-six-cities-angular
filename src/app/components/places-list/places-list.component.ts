@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core'; //, SimpleChanges, OnChanges
 import { PlaceCardComponent } from '../place-card/place-card.component';
 import { Offers } from '../../types/types';
-import { PlacesListPage } from '../../const';
+import { CITIES, DEFAULT_CITY_INDEX, PlacesListPage } from '../../const';
 
 @Component({
   selector: 'app-places-list',
@@ -14,8 +14,9 @@ export class PlacesListComponent implements OnInit {
   activeCardOfferId = 0;
   placesListClass = '';
 
-  @Input() displayedOffers: Offers = [];
+  @Input() cityOffers: Offers = [];
   @Input() placesListPageName = PlacesListPage.Main;
+  @Input() currentCityName = CITIES[DEFAULT_CITY_INDEX].name;
 
   ngOnInit() {
     switch (this.placesListPageName) {
@@ -25,6 +26,8 @@ export class PlacesListComponent implements OnInit {
       case PlacesListPage.Offer:
         this.placesListClass = 'near-places__list places__list';
         break;
+      default:
+        this.placesListClass = '';
     }
   }
 

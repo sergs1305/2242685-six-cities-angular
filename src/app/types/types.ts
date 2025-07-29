@@ -1,3 +1,8 @@
+// export interface AppState {
+//   currentCityName: string;
+//   allOffers: Offers;
+// }
+
 export interface Location {
   latitude: number;
   longitude: number;

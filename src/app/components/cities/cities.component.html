@@ -1,0 +1,16 @@
+<section class="locations container">
+  <ul class="locations__list tabs__list">
+    @for (cityName of citiesNames; track $index) {
+      <li class="locations__item">
+        <a
+          class="locations__item-link tabs__item"
+          [class.tabs__item--active]="cityName === currentCityName"
+          href="#"
+          (click)="selectCity(cityName)"
+        >
+          <span>{{ cityName }}</span>
+        </a>
+      </li>
+    }
+  </ul>
+</section>

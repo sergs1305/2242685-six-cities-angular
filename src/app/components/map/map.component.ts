@@ -1,11 +1,9 @@
-import { Component, AfterViewInit, Input } from '@angular/core';
-// import { Map, TileLayer, Icon, Marker, layerGroup } from 'leaflet';
+import { Component, AfterViewInit, OnChanges, SimpleChanges, Input } from '@angular/core';
 import * as L from 'leaflet';
 import * as M from './const';
-import { City, Offers } from '../../types/types';
+import { Offers } from '../../types/types';
 import { CITIES, DEFAULT_CITY_INDEX } from '../../const';
 import { ICON_HEIGHT, ICON_WIDTH, URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from './const';
-// import 'leaflet/dist/leaflet.css';
 
 const defaultCustomIcon = L.icon({
   iconUrl: URL_MARKER_DEFAULT,
@@ -25,33 +23,40 @@ const currentCustomIcon = L.icon({
   templateUrl: './map.component.html',
   styleUrl: './map.component.css'
 })
-export class MapComponent implements AfterViewInit {
+export class MapComponent implements AfterViewInit, OnChanges {
 
-  @Input() city: City = {
-    name: CITIES[DEFAULT_CITY_INDEX],
-    location: {
-      latitude: 0,
-      longitude: 0,
-      zoom: 13
-    },
-  };
-  @Input() offers: Offers = [];
+  @Input() cityName = CITIES[DEFAULT_CITY_INDEX].name;
+  @Input() cityOffers: Offers = [];
   @Input() selectedOfferId: string | undefined;
+
+  currentCity = CITIES.find(city => city.name === this.cityName) ?? CITIES[DEFAULT_CITY_INDEX];
 
   mapHeight = M.MAP_HEIGHT;
   mapWidth = M.MAP_WIDTH;
+
+  private map: L.Map | undefined;
+  private markers: L.Marker[] = [];
 
   ngAfterViewInit(): void {
     this.initMap();
     this.makeMarkers();
   }
 
-  private map: L.Map | undefined;
+  ngOnChanges(changes: SimpleChanges): void {
+  if (changes['cityName']) {
+    this.currentCity = CITIES.find(city => city.name === this.cityName) ?? CITIES[DEFAULT_CITY_INDEX];
+    this.updateMap();
+  }
+    // if (changes.cityOffers) {
+    //   this.removeMarkers();
+    //   this.makeMarkers();
+    // }
+  }
 
   private initMap(): void {
     this.map = L.map('map', {
-      center: [52.37454, 4.897976],
-      zoom: 13, //city.location.zoom
+      center: [this.currentCity.location.latitude, this.currentCity.location.longitude],
+      zoom: this.currentCity.location.zoom,
     });
 
     const tiles = L.tileLayer(M.TileLayerParam.Argument, {
@@ -61,26 +66,35 @@ export class MapComponent implements AfterViewInit {
     tiles.addTo(this.map);
   }
 
-  private makeMarkers(): void {
-    // if (!this.map || !this.offers || this.offers.length === 0) {
-    //   return;
-    // }
+  private updateMap(): void {
+    if (this.map) {
+      this.map.remove();
+      this.initMap();
+      this.makeMarkers();
+    }
+  }
 
-    this.offers.forEach((point) => {
+  private removeMarkers(): void {
+    this.markers.forEach(marker => marker.remove());
+    this.markers = [];
+  }
+
+  private makeMarkers(): void {
+    this.removeMarkers();
+
+    this.cityOffers.forEach((point) => {
       const marker = L.marker(
         {
           lat: point.location.latitude,
           lng: point.location.longitude,
         },
         {
-          icon:
-            point.id === this.selectedOfferId ? currentCustomIcon : defaultCustomIcon,
+          icon: point.id === this.selectedOfferId ? currentCustomIcon : defaultCustomIcon,
         }
       );
 
       marker.addTo(this.map!);
+      this.markers.push(marker);
     });
   }
-  // constructor() { }
-
 }

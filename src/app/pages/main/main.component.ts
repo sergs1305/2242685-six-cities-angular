@@ -1,35 +1,40 @@
 import { Component, OnInit } from '@angular/core';
 import { PlacesListComponent } from "../../components/places-list/places-list.component";
-import { offers } from '../../../mocks/offers';
-import { City, Offers } from '../../types/types';
+import { Offers } from '../../types/types';
 import { MapComponent } from "../../components/map/map.component";
-import { CITIES, DEFAULT_CITY_INDEX, PlacesListPage } from '../../const';
+import { CITIES, PlacesListPage } from '../../const'; // , DEFAULT_CITY_INDEX
+import { CitiesComponent } from "../../components/cities/cities.component";
+import { getCityOffers, getCurrentCityName } from '../../state/selectors/offers.selectors';
+import { Observable } from 'rxjs';
+import { selectCityAction } from '../../state/actions/city.actions';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../state/reducers/reducers';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-main',
-  imports: [PlacesListComponent, MapComponent],
+  imports: [PlacesListComponent, MapComponent, CitiesComponent, CommonModule],
   templateUrl: './main.component.html',
-  styleUrl: './main.component.css'
+  styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-  cityOffers: Offers = [];
-  currentCity: City = {
-    name: CITIES[DEFAULT_CITY_INDEX],
-    location: {
-      latitude: 0,
-      longitude: 0,
-      zoom: 0
-    }
-  };
+  citiesNames = CITIES.map(city => city.name);
+  cityOffers$!: Observable<Offers>;
+  // currentCity$!: Observable<City>;
+  currentCityName$!: Observable<string>;
+
+  constructor(private store: Store<AppState>) {}
+
   placesListPage = PlacesListPage;
 
   ngOnInit(): void {
-    const foundOffer = offers.find(offer => offer.city.name === this.currentCity.name);
-    if (foundOffer) {
-      this.currentCity.location = foundOffer.location;
-    }
+    this.cityOffers$ = this.store.select(getCityOffers);
+    // this.currentCity$ = this.store.select(getCurrentCity);
+    this.currentCityName$ = this.store.select(getCurrentCityName);
+  }
 
-    this.cityOffers = offers.filter(offer => offer.city.name === this.currentCity.name);
+  selectCity(cityName: string): void {
+    this.store.dispatch(selectCityAction({ cityName }));
   }
 
 }

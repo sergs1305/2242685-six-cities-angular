@@ -109,13 +109,13 @@
         <!-- ----------------------------------------------- -->
       </div>
     </div>
-    <app-map [city]="offer.city" [offers]="nearbyOffers"></app-map>
+    <app-map [cityName]="offer.city.name" [cityOffers]="nearbyOffers"></app-map>
   </section>
   <div class="container">
     <section class="near-places places">
       <h2 class="near-places__title">Other places in the neighbourhood</h2>
 
-      <app-places-list [displayedOffers]="nearbyOffers" [placesListPageName]="placesListPage.Offer"></app-places-list>
+      <app-places-list [cityOffers]="nearbyOffers" [placesListPageName]="placesListPage.Offer"></app-places-list>
 
     </section>
   </div>
